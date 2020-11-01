@@ -1,0 +1,4 @@
+#!/bin/bash
+rm -rf /var/www/dscccore
+rm -f /etc/httpd/conf.d/DSCC.conf
+rm -f /etc/systemd/system/DSCC.service

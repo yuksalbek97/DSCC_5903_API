@@ -1,0 +1,26 @@
+version: 0.0
+os: linux
+files:
+  - source: /API/
+    destination: /var/www/dscccore
+  - source: scripts/DSCC.conf
+    destination: /etc/httpd/conf.d/
+  - source: scripts/DSCC.service
+    destination: /etc/systemd/system/
+
+hooks:
+  ApplicationStop:
+    - location: scripts/stop_service
+      timeout: 300
+      runas: root
+
+  BeforeInstall:
+    - location: scripts/remove_application
+      timeout: 300
+      runas: root
+
+  ApplicationStart:
+    - location: scripts/start_service
+      timeout: 300
+      runas: root
+    
